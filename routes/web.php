@@ -84,3 +84,7 @@ Route::group(['middleware' => 'auth'], function(){
     // :: -> Scope resolution operator
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
