@@ -26,9 +26,9 @@
         </div>
         <div class="col text-end">
             @forelse ($post->categoryPost as $category_post)
-                <span class="badge bg-secondary bg-opacity-50">{{ $category_post->category->name }}</span>
+                <a href="{{ route('category.index', $category_post->category_id) }}"><span class="badge bg-secondary bg-opacity-50">{{ $category_post->category->name }}</span></a>
             @empty
-                <div class="badge bg-dark text-wrap">Uncategorized</div>
+                <a href="#"><div class="badge bg-dark text-wrap">Uncategorized</div></a>
             @endforelse
         </div>
     </div>

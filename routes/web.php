@@ -9,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\CategoryController;
 
 # Admin users
 use App\Http\Controllers\Admin\UsersController;
@@ -39,6 +40,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
     Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
 
+    #Cotegory
+    Route::get('/category/{category_id}/index', [CategoryController::class, 'index'])->name('category.index');
+
     #Comment
     Route::post('/comment/{post_id}/store', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comment/{post_id}/destroy', [CommentController::class, 'destroy'])->name('comment.destroy');
@@ -54,7 +58,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/like/{post_id}/store', [LikeController::class, 'store'])->name('like.store');
     Route::delete('/like/{post_id}/destroy', [LikeController::class, 'destroy'])->name('like.destroy');
 
-    #follow
+    #Follow
     Route::post('/follow/{id}', [FollowController::class, 'store'])->name('follow.store');
     Route::delete('/unfollow/{id}', [FollowController::class, 'destroy'])->name('follow.destroy');
 

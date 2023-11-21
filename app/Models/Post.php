@@ -43,4 +43,10 @@ class Post extends Model
     // that confirms that that user already like the post
    }
 
+    //追加
+    // public function categories()
+    // {
+    //     return $this->belongsToMany(Category::class, 'category_post', 'post_id', 'category_id');
+    // }
+
 }
