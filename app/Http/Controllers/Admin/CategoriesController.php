@@ -7,12 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 
-
-use function PHPUnit\Framework\returnSelf;
-
 class CategoriesController extends Controller
 {
-    //
     private $category;
     private $post;
 
@@ -26,6 +22,7 @@ class CategoriesController extends Controller
     {
         $all_categories = $this->category->orderBy('updated_at', 'desc')->paginate(5);
 
+        // check uncategorized post
         $uncategorized_count = 0;
         $all_posts = $this->post->all();
         foreach ($all_posts as $post) {
@@ -42,12 +39,11 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        # Validate the data first
         $request->validate([
             'name' => 'required|min:1|max:50|unique:categories,name'
         ]);
 
-        #SWIMING -> Swiming
+        //　SWIMING -> Swiming
         $this->category->name = ucwords(strtolower($request->name));
         $this->category->save();
 
@@ -56,7 +52,6 @@ class CategoriesController extends Controller
 
     public function update(Request $request, $id)
     {
-        # Validate the data first
         $request->validate([
             'new_name' => 'required|min:1|max:50|unique:categories,name, ' . $id
         ]);
@@ -73,6 +68,4 @@ class CategoriesController extends Controller
         $this->category->destroy($id);
         return redirect()->back();
     }
-
-
 }

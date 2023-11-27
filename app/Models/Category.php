@@ -16,7 +16,7 @@ class Category extends Model
         return $this->hasMany(categoryPost::class);
     }
 
-    # <ADD> Use this method to get information about posts in the selected category
+    # Use this method to get information about posts in the selected category
     public function posts()
     {
         return $this->belongsToMany(Post::class, 'category_post', 'category_id', 'post_id')->latest();

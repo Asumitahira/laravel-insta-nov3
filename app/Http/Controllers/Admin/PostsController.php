@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostsController extends Controller
@@ -18,7 +17,7 @@ class PostsController extends Controller
     public function index()
     {
         $all_posts = $this->post->withTrashed()->latest()->paginate(5);
-        //The same: "SELECT * FROM posts ORDER BY created_at DESC"
+        // The same: "SELECT * FROM posts ORDER BY created_at DESC"
 
         return view('admin.posts.index')
             ->with('all_posts', $all_posts);

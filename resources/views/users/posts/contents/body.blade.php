@@ -4,6 +4,7 @@
         <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="w-100">
     </a>
 </div>
+
 <div class="card-body">
     {{-- Heart button + no. of likes + categories --}}
     <div class="row align-items-center">
@@ -32,6 +33,7 @@
             @endforelse
         </div>
     </div>
+    
     {{-- Owner + description --}}
     <a href="{{ route('profile.show', $post->user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $post->user->name }}</a>
     &nbsp;
@@ -41,6 +43,5 @@
 
     {{-- Comments section --}}
     {{-- Display all the comments here --}}
-
     @include('users.posts.contents.comments')
 </div>

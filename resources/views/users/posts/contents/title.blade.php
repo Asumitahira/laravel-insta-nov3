@@ -9,10 +9,12 @@
                 @endif
             </a>
         </div>
+
         <div class="col ps-0">
             <a href="{{ route('profile.show', $post->user->id) }}"
                 class="text-decoration-none text-dark">{{ $post->user->name }}</a>
         </div>
+
         <div class="col-auto">
             <div class="dropdown">
                 <button class="btn btn-sm shadow-none" data-bs-toggle="dropdown">
@@ -40,13 +42,11 @@
                             <form action="{{route('follow.destroy',$post->user->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-
                                 <button type="submit" class="dropdown-item text-danger">UnFollow</button>
                             </form>
                         @else
                             <form action="{{ route('follow.store', $post->user->id) }}" method="post">
                                 @csrf
-
                                 <button type="submit" class="dropdown-item text-primary">Follow</button>
                             </form>
                         @endif

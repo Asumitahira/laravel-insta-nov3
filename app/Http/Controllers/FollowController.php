@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
     private $follow;
-    private $user;
 
-    public function __construct(Follow $follow, User $user)
+    public function __construct(Follow $follow)
     {
         $this->follow = $follow;
-        $this->user = $user;
     }
 
     public function store($id)

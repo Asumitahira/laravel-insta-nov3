@@ -19,6 +19,7 @@
                             <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
                         @endif
                     </div>
+
                     <div class="col-auto align-self-end">
                         <input type="file" name="avatar" id="avatar" class="form-control form-control-sm mt-1" aria-describedby="avatar-info">
                         <div class="form-text" id="avatar-info">
@@ -28,8 +29,9 @@
                         @error('avatar')
                             <p class="text-danger small">{{ $message }}</p>
                         @enderror
-                      </div>
+                    </div>
                 </div>
+                
                 <div class="mb-3">
                     <label for="name" class="form-label fw-bold">Name</label>
                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $user->name) }}">
@@ -53,6 +55,11 @@
                         <p class="text-danger small">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <p>
+                    Do you want to change the password?  <br>
+                    Click <a href="{{ route('profile.editPassword') }}">Here</a>
+                </p>
                 <button type="submit" class="btn btn-warning px-5">Save</button>
             </form>
         </div>

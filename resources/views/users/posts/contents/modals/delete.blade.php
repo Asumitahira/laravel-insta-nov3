@@ -6,6 +6,7 @@
                     <i class="fa-solid fa-circle-exclamation"></i> Delete Post
                 </h3>
             </div>
+
             <div class="modal-body">
                 <p>Are you sure you want to delete this post?</p>
                 <div class="mt-3">
@@ -13,6 +14,7 @@
                     <p class="mt-1 text-muted">{{ $post->description }}</p>
                 </div>
             </div>
+            
             <div class="modal-footer border-0">
                 <form action="{{ route('post.destroy', $post->id) }}" method="post">
                     @csrf

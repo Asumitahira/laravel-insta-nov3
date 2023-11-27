@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -83,5 +84,40 @@ class ProfileController extends Controller
         return view('users.profile.following')
                 ->with('following', $following)
                 ->with('user', $user);
+    }
+
+    public function editPassword(){
+        $user = $this->user->findOrFail(Auth::user()->id);
+        return view('users.profile.edit-password')
+            ->with('user', $user);
+    }
+
+    public function updatePassword(Request $request){
+        // 1. varidate the request data
+        $request->validate([
+            'current_password'       => 'required',
+            'new_password'           => 'required|min:8|max:20',
+            'confirmation_password'  => 'required|min:8|max:20'
+
+        ]);
+
+        // 2. Get the logged in user's infomation
+        $user = Auth::user();
+
+        // 3.　Check if new_password and confirmation_password value are the same or not
+        if ($request->new_password !== $request->confirmation_password) {
+            return back()->with('error', 'new password and confirmation password are not the same.');
+        }
+
+        // 4. Update the new password
+        if (Hash::check($request->current_password, $user->password)) {
+            $user->update([
+                'password' => bcrypt($request->new_password),
+            ]);
+
+            return redirect()->route('profile.editPassword')->with('success', 'Password changed successfully.');
+        }
+
+        return back()->withErrors(['current_password' => 'The current password is incorrect.']);
     }
 }

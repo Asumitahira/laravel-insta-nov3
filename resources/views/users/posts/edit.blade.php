@@ -25,6 +25,7 @@
                 <p class="text-danger small">{{ $message }}</p>
             @enderror
         </div>
+
         <div class="mb-3">
             <label for="description" class="form-label fw-bold">Description</label>
             <textarea name="description" id="description" rows="5" class="form-control" placeholder="What's on your mind">{{ old('description', $post->description) }}</textarea>
@@ -32,6 +33,7 @@
                 <div class="text-danger small">{{ $message }}</div>
             @enderror
         </div>
+        
         <div class="row mb-4">
             <div class="col-6">
                 <label for="image" class="form-label fw-bold">Image</label>

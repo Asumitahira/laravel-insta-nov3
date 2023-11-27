@@ -3,9 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
-    <div class="row gx-5">
+    <div class="row gx-5 home-row">
         <div class="col-8 bg-light">
-            <p class="text-danger"> This is the homepage</p>
             @forelse ($home_posts as $post)
                 <div class="card mb-4">
                     @include('users.posts.contents.title')
@@ -20,8 +19,26 @@
                 </div>
             @endforelse
         </div>
+
         <div class="col-4 bg-light">
-            @include('users.suggestions')
+            {{-- Profile Overview --}}
+            <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
+                <div class="col-auto">
+                    <a href="{{ route('profile.show', Auth::user()->id) }}">
+                        @if (Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="rounded-circle avatar-md">
+                        @else
+                            <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
+                        @endif
+                    </a>
+                </div>
+                
+                <div class="col ps-0">
+                    <a href="{{ route('profile.show', Auth::user()->id) }}" class="text-decoration-none text-dark fw-bold">{{ Auth::user()->name }}</a>
+                    <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
+                </div>
+            </div>
+            @include('users.suggestions.index')
         </div>
     </div>
 @endsection

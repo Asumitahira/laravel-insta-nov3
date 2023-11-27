@@ -30,7 +30,6 @@
         <li class="list-group-item border-0 px-0 pt-0">
             <a href="{{ route('post.show', $post->id) }}" class="text-decoration-none small">View All  {{ $post->comments->count() }} comments</a>
         </li>
-
     @endif
 
     <form action="{{ route('comment.store', $post->id) }}" method="post">
@@ -39,6 +38,7 @@
             <textarea name="comment_body{{$post->id}}" rows="1" class="form-control form-control-sm" placeholder="Add a comment here....">{{ old('comment_body' . $post->id) }}</textarea>
             <button type="submit" class="btn btn-secondary btn-sm">Post</button>
         </div>
+        
         {{-- Error message area --}}
         @error('comment_body' . $post->id)
             <p class="text-danger small">{{ $message }}</p>

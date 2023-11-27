@@ -26,7 +26,7 @@ class CommentController extends Controller
         ]
         );
 
-        # 2. Save/insert comment detailss
+        # 2. Save/insert comment detailes
         $this->comment->body = $request->input('comment_body' . $post_id);
         $this->comment->user_id = Auth::user()->id;
         $this ->comment->post_id = $post_id;

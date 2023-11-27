@@ -6,11 +6,13 @@
             <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
         @endif
     </div>
+
     <div class="col-8">
         <div class="row mb-3">
             <div class="col-auto">
                 <h2 class="display-5 mb-0">{{ $user->name }}</h2>
             </div>
+
             <div class="col-auto p-2">
                 @if (Auth::user()->id === $user->id)
                     <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
@@ -27,21 +29,23 @@
                             <button class="btn btn-primary btn-sm fw-bold">Follow</button>
                         </form>
                     @endif
-
                 @endif
             </div>
         </div>
+
         <div class="row mb-3">
             <div class="col-auto">
                 <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none fw-bold text-dark">
                     <strong>{{ $user->posts->count() }}</strong> Posts
                 </a>
             </div>
+
             <div class="col-auto">
                 <a href="{{ route('profile.follower', $user->id) }}" class="text-decoration-none text-dark">
                     <strong>{{ $user->followers->count() }}</strong> Followers
                 </a>
             </div>
+            
             <div class="col-auto">
                 <a href="{{ route('profile.following', $user->id) }}" class="text-decoration-none text-dark">
                     <strong>{{ $user->following->count() }}</strong> Following

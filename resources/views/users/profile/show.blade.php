@@ -3,6 +3,7 @@
 @section('title', 'Profile Page')
 
 @section('content')
+
     @include('users.profile.header')
 
     {{-- Display all the posts of the user --}}

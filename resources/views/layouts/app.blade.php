@@ -21,6 +21,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    {{-- viewport --}}
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
 </head>
 <body>
     <div id="app">
@@ -73,6 +76,13 @@
                                 <a href="{{ route('post.create') }}" class="nav-link"><i class="fa-solid fa-circle-plus text-dark icon-sm"></i></a>
                             </li>
 
+                            {{-- Chat --}}
+                            <li class="nav-item" title="Chat Box">
+                                <a href="{{ route('chat.index', Auth::user()->id) }}" class="nav-link">
+                                    <i class="fa-regular fa-paper-plane text-dark icon-sm"></i>
+                                </a>
+                            </li>
+
                             {{-- Account --}}
                             <li class="nav-item dropdown">
 
@@ -107,7 +117,6 @@
                                         @else
                                             <i class="fa-solid fa-circle-user"></i> Profile
                                         @endif
-
                                     </a>
 
                                     {{-- Logout --}}

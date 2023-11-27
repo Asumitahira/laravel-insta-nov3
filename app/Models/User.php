@@ -73,9 +73,7 @@ class User extends Authenticatable
         # using the (where('follower_id', Auth::user()->id) ---- checking if that id exists (exists())
     }
 
-    //自分のことをフォローしているユーザーの取得
-    public function isFollowing(){
-        return $this->following()->where('following_id', Auth::user()->id)->exists();
+    public function chat(){
+        return $this->hasMany(Chat::class);
     }
-
 }

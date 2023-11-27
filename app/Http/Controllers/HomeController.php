@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use  App\Models\Post;
 use  App\Models\User;
-// use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,17 +29,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-
-    // public function index()
-    // {
-    //     $all_posts = $this->post->latest()->get();
-    //     // The same as "SELECT * FROM posts ORDER BY created_at DESC"
-    //     $suggested_users = $this->getSuggestedUsers();
-    //     return view('users.home')
-    //         ->with('all_posts', $all_posts)
-    //         ->with('suggested_users', $suggested_users);
-    // }
-
     public function index()
     {
         $home_posts        = $this->getHomePosts();
@@ -85,8 +73,23 @@ class HomeController extends Controller
          */
     }
 
+    public function show(){
+        $all_users = $this->user->all()->except(Auth::user()->id);
+        $suggested_users = [];
+
+        foreach ($all_users as $user) {
+            if(!$user->isFollowed()){
+                $suggested_users[] = $user;
+            }
+        }
+
+        return view('users.suggestions.show')->with('suggested_users', $suggested_users);
+    }
+
     public function search(Request $request){
         $users = $this->user->where('name', 'like', '%' . $request->search . '%')->get();
         return view('users.search')->with('users', $users)->with('search', $request->search);
     }
+
+
 }

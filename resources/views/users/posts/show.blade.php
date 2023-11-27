@@ -7,20 +7,32 @@
         .comment{
             overflow-y: scroll;
             max-height: 220px;
+            width: 300px;
+            /* height: 220px; */
         }
         .card-body{
             position: absolute;
             top: 65px;
             /* The 65px is only an approximate */
         }
+
+        .card{
+            min-height: 500px;
+        }
+
+        .post-img{
+            min-height: 500px;
+            object-fit: cover;
+        }
+
     </style>
     <div class="row border shadow">
         <div class="col p-0 border-end">
             {{-- $post: PostController->home.blade.php->body.blade.php->show.blade.php --}}
-            <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="w-100">
+            <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="w-100 post-img">
         </div>
         <div class="col-4 px-0 bg-white">
-            <div class="card border-0">
+            <div class="card border-0 bg-white">
                 <div class="card-header bg-white py-3">
                     <div class="row align-items-center">
                         <div class="col-auto">
@@ -67,7 +79,6 @@
                                         <button type="submit" class="border-0 bg-transparent p-0 text-primary">Follow</button>
                                     </form>
                                 @endif
-
                             @endif
                         </div>
                     </div>
@@ -94,9 +105,9 @@
                         </div>
                         <div class="col text-end">
                             @forelse ($post->categoryPost as $category_post)
-                                <span class="badge bg-secondary bg-opacity-50">{{ $category_post->category->name }}</span>
+                                <a href="{{ route('category.index', $category_post->category_id) }}"><span class="badge bg-secondary bg-opacity-50">{{ $category_post->category->name }}</span></a>
                             @empty
-                                <div class="badge bg-dark text-wrap">Uncategorized</div>
+                                <a href="#"><div class="badge bg-dark text-wrap">Uncategorized</div></a>
                             @endforelse
                         </div>
                     </div>
@@ -113,15 +124,15 @@
                         @if ($post->comments->isNotEmpty())
                             <ul class="list-group mt-2">
                                 @foreach ($post->comments as $comment)
-                                    <li class="list-group-item border-0 p-0 mb-2">
-                                        <a href="#" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
+                                    <li class="list-group-item border-0 p-0 mb-2 bg-white">
+                                        <a href="{{ route('profile.show',$post->user->id ) }}" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                         &nbsp;
                                         <p class="d-inline fw-light">{{ $comment->body }}</p>
                                         <form action="{{ route('comment.destroy', $comment->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <p><span class="text-danger small">Posted on {{ $comment->created_at->diffForHumans() }}</span></p>
-                                            <span class="text-uppercase text-muted small">{{date('M d, Y', strtotime($comment->created_at))}}</span>
+                                            <p><span class="text-secondary small">Posted on {{ $comment->created_at->diffForHumans() }}</span></p>
+                                            <span class="text-uppercase text-muted small mt-0">{{date('M d, Y', strtotime($comment->created_at))}}</span>
 
                                             {{-- If the AUTH user is the owner of the comment, then display the delete button --}}
                                             @if (Auth::user()->id === $comment->user->id)
@@ -133,19 +144,19 @@
                                 @endforeach
                             </ul>
                         @endif
+                    </div>
 
-                        <div class="mt-4">
-                            <form action="{{ route('comment.store', $post->id) }}" method="post">
-                                @csrf
-                                <div class="input-group">
-                                    <textarea name="comment_body{{$post->id}}" rows="1" class="form-control form-control-sm" placeholder="Add a comment here....">{{ old('comment_body' . $post->id) }}</textarea>
-                                    <button type="submit" class="btn btn-secondary btn-sm">Post</button>
-                                </div>
-                                @error('comment_body' . $post->id)
-                                    <p class="text-danger small">{{ $message }}</p>
-                                @enderror
-                            </form>
-                        </div>
+                    <div class="mt-4">
+                        <form action="{{ route('comment.store', $post->id) }}" method="post">
+                            @csrf
+                            <div class="input-group">
+                                <textarea name="comment_body{{$post->id}}" rows="1" class="form-control form-control-sm" placeholder="Add a comment here....">{{ old('comment_body' . $post->id) }}</textarea>
+                                <button type="submit" class="btn btn-secondary btn-sm">Post</button>
+                            </div>
+                            @error('comment_body' . $post->id)
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </form>
                     </div>
                 </div>
             </div>

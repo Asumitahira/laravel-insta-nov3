@@ -18,10 +18,12 @@
                             @endif
                         </a>
                     </div>
+
                     <div class="col ps-0 text-truncate">
                         <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
                         <p class="text-muted mb-0">{{ $user->email }}</p>
                     </div>
+
                     <div class="col-auto">
                         @if ($user->id !== Auth::user()->id)
                             @if ($user->isFollowed())

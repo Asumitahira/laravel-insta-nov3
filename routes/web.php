@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatController;
 
 # Admin users
 use App\Http\Controllers\Admin\UsersController;
@@ -32,6 +33,7 @@ Auth::routes();
 #logged in users can access the route inside the group
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/suggestion/{id}/show', [HomeController::class, 'show'])->name('suggestion.show');
 
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
@@ -53,6 +55,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile/{id}/follower', [ProfileController::class, 'showFollowers'])->name('profile.follower');
     Route::get('/profile/{id}/following', [ProfileController::class, 'showFollowing'])->name('profile.following');
+    Route::get('/profile/edit/password', [ProfileController::class, 'editPassword'])->name('profile.editPassword');
+    Route::patch('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
     #Like/Unlike
     Route::post('/like/{post_id}/store', [LikeController::class, 'store'])->name('like.store');
@@ -61,6 +65,13 @@ Route::group(['middleware' => 'auth'], function(){
     #Follow
     Route::post('/follow/{id}', [FollowController::class, 'store'])->name('follow.store');
     Route::delete('/unfollow/{id}', [FollowController::class, 'destroy'])->name('follow.destroy');
+
+    # Chat
+    Route::get('/chat/{id}/index', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/{id}/show', [ChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/{id}/store', [ChatController::class, 'store'])->name('chat.store');
+    Route::get('/chat/suggest', [ChatController::class, 'suggestUser'])->name('chat.suggestUser');
+
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
         # Users
@@ -87,8 +98,3 @@ Route::group(['middleware' => 'auth'], function(){
     });
     // :: -> Scope resolution operator
 });
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

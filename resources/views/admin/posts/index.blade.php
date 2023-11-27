@@ -62,7 +62,6 @@
                                     </button>
                                 </div>
                             @endif
-
                         </div>
                         @include('admin.posts.modal.status')
                     </td>

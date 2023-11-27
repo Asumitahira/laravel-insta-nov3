@@ -50,6 +50,7 @@ class PostController extends Controller
             $category_post[] = ['category_id' => $category_id];
             # $category_post[1,3,5]
         }
+        
         $this->post->categoryPost()->createMany($category_post);
         # Note that createMany() accepts an array ($category_post) and it is being save to the category_post table
         #createMany is almost the same as save()

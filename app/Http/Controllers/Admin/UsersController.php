@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User; //inherit the user model
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -16,7 +15,7 @@ class UsersController extends Controller
 
     public function index(){
         $all_users = $this->user->withTrashed()->latest()->paginate(4);
-        //The same: "SELECT * FROM users ORDER BY created_at DESC"
+        // The same: "SELECT * FROM users ORDER BY created_at DESC"
 
         return view('admin.users.index')
             ->with('all_users', $all_users);
