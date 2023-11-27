@@ -63,7 +63,7 @@
 
 
 {{-- Chatting Form --}}
-<form action="{{ route('chat.store', $user->id) }}" method="post" class="mt-3 chat-form w-75 mb-3">
+<form action="{{ route('chat.store', $user->id) }}" method="post" class="mt-3 chat-form w-75 mb-3" style="position:fixed; bottom: 0;">
     @csrf
     <div class="row">
         <div class="col-10">

@@ -97,6 +97,7 @@ class ChatController extends Controller
                 $query->where('sender_id', $receiver_id)
                       ->where('receiver_id', $sender_id);
             })
+            ->oldest('created_at')
             ->get();
 
         return $chats;
