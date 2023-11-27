@@ -38,7 +38,7 @@
                         @if($user->avatar)
                             <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="rounded-circle " style="width: 2.5rem; height: 2.5rem; object-fit: cover;">
                         @else
-                            <i class="fa-solid fa-circle-user text-secondary icon-ssm"></i>
+                            <i class="fa-solid fa-circle-user text-secondary icon-ssm" style="font-size: 2.5rem;"></i>
                         @endif
                     @else
                         @if(Auth::user()->avatar)
@@ -49,7 +49,7 @@
                     @endif
 
                     {{-- Message --}}
-                    <p class="mb-3 p-2 d-inline ps-3 pe-3 chat-bg ms-2 @if($chat->sender_id === Auth::user()->id ) float-end me-2 @endif">{{$chat->content}}</p>
+                    <p class="mb-3 p-2 d-inline ps-3 pe-3 chat-bg ms-2 @if($chat->sender_id === Auth::user()->id ) float-end me-2 @endif" style="max-width: 50%; border-radius: 20px; background-color: #e0e0e0;">{{$chat->content}}</p>
 
                     {{-- Time --}}
                     <p class="mb-3 p-2 d-inline small mt-1 @if($chat->sender_id === Auth::user()->id ) float-end  @endif">{{$chat->created_at->format('h:i A')}}</p>
