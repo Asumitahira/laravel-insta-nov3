@@ -6,7 +6,8 @@
 {{-- Display all posts related to the selected category --}}
 <div class="row gx-5">
     <div class="col-8">
-        <p class="h3 text-center mb-3">Selected category : <span class="badge bg-secondary bg-opacity-50 "> {{ $category->name }}</span></p>
+        <p class="h3 text-center mb-3">カテゴリー : <span class="badge bg-secondary bg-opacity-50 "> {{ $category->name }}</span></p>
+        {{-- <p class="h3 text-center mb-3">Selected category : <span class="badge bg-secondary bg-opacity-50 "> {{ $category->name }}</span></p> --}}
 
         @foreach ($home_posts as $post)
             <div class="card mb-4">

@@ -5,7 +5,8 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-5">
-            <p class="h5 text-muted mb-4">Search results for "<span class="fw-bold">{{ $search }}</span>"</p>
+            <p class="h5 text-muted mb-4">"<span class="fw-bold">{{ $search }}</span>" を含むユーザーを検索</p>
+            {{-- <p class="h5 text-muted mb-4">Search results for "<span class="fw-bold">{{ $search }}</span>"</p> --}}
 
             @forelse ($users as $user)
                 <div class="row align-items-center mb-3">
@@ -14,7 +15,7 @@
                             @if ($user->avatar)
                                 <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="rounded-circle avatar-md">
                             @else
-                                <i class="fa-solid fa-circle-user text-secondary"></i>
+                                <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
                             @endif
                         </a>
                     </div>
@@ -30,19 +31,22 @@
                                 <form action="{{ route('follow.destroy', $user->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-secondary btn-sm">Following</button>
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">フォロー中</button>
+                                    {{-- <button type="submit" class="btn btn-outline-secondary btn-sm">Following</button> --}}
                                 </form>
                             @else
                                 <form action="{{ route('follow.store', $user->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary btn-sm">Follow</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">フォロー</button>
+                                    {{-- <button type="submit" class="btn btn-primary btn-sm">Follow</button> --}}
                                 </form>
                             @endif
                         @endif
                     </div>
                 </div>
             @empty
-                <p class="lead text-muted text-center">No Users Found.</p>
+                <p class="lead text-muted text-center">ユーザーが見つかりません。</p>
+                {{-- <p class="lead text-muted text-center">No Users Found.</p> --}}
             @endforelse
         </div>
     </div>

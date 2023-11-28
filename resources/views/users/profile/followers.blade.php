@@ -8,9 +8,11 @@
     {{-- Display all the follower --}}
     <div class="mt-5 w-25 mx-auto">
         @if (count($followers) === 0)
-            <h5 class="text-muted text-center">No One Followed You Yet</h5>
+            <h5 class="text-muted text-center">まだフォロワーがいません。</h5>
+            {{-- <h5 class="text-muted text-center">No One Followed You Yet</h5> --}}
         @else
-            <h5 class="text-center mb-3">Follower</h5>
+            <h5 class="text-center mb-3">フォロワー</h5>
+            {{-- <h5 class="text-center mb-3">Follower</h5> --}}
             @foreach ($followers as $user)
             <div class="row mt-2">
                 <div class="col-auto">
@@ -31,7 +33,8 @@
                     <div class="col">
                         <form action="{{ route('follow.store', $user->id) }}" method="post">
                             @csrf
-                            <button type="submit" class="col float-end text-primary btn btn-link text-decoration-none">Follow</button>
+                            <button type="submit" class="col float-end text-primary btn btn-link text-decoration-none">フォロー</button>
+                            {{-- <button type="submit" class="col float-end text-primary btn btn-link text-decoration-none">Follow</button> --}}
                         </form>
                     </div>
                 @else
@@ -39,7 +42,8 @@
                         <form action="{{ route('follow.destroy', $user->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="col float-end text-secondary btn btn-link text-decoration-none">Following</button>
+                            <button type="submit" class="col float-end text-secondary btn btn-link text-decoration-none">フォロー中</button>
+                            {{-- <button type="submit" class="col float-end text-secondary btn btn-link text-decoration-none">Following</button> --}}
                         </form>
                     </div>
                 @endif

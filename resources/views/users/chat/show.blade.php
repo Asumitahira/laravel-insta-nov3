@@ -56,21 +56,24 @@
                 </div>
             </div>
         @empty
-            <p class="h4 text-center text-secondary mt-5">No chat yet.</p>
+            <p class="h4 text-center text-secondary mt-5">チャットがありません。</p>
+            {{-- <p class="h4 text-center text-secondary mt-5">No chat yet.</p> --}}
         @endforelse
     @endif
 </div>
 
 
 {{-- Chatting Form --}}
-<form action="{{ route('chat.store', $user->id) }}" method="post" class="mt-3 chat-form w-75 mb-3" style="position:fixed; bottom: 0;">
+<form action="{{ route('chat.store', $user->id) }}" method="post" class="mt-3 chat-form mb-3 w-75" style="position:fixed; bottom: 0;">
     @csrf
     <div class="row">
         <div class="col-10">
-            <input type="text" name="content" id="#" class="form-control" placeholder="Enter a message">
+            <input type="text" name="content" id="#" class="form-control" placeholder="メッセージを入力してください。">
+            {{-- <input type="text" name="content" id="#" class="form-control" placeholder="Enter a message"> --}}
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn"><i class="fa-regular fa-paper-plane fa-2x"></i></button>
+            <button type="submit" class="btn" title="送信"><i class="fa-regular fa-paper-plane fa-2x"></i></button>
+            {{-- <button type="submit" class="btn" title="send"><i class="fa-regular fa-paper-plane fa-2x"></i></button> --}}
         </div>
     </div>
 </form>

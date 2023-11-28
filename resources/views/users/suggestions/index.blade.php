@@ -2,11 +2,13 @@
 @if ($suggested_users)
     <div class="row">
         <div class="col-auto">
-            <p class="fw-bold text-secondary">Suggestions For You</p>
+            <p class="fw-bold text-secondary">おすすめ</p>
+            {{-- <p class="fw-bold text-secondary">Suggestions For You</p> --}}
         </div>
 
         <div class="col text-end">
-            <a href="{{ route('suggestion.show', Auth::user()->id) }}" class="fw-bold text-dark text-decoration-none">See All</a>
+            <a href="{{ route('suggestion.show', Auth::user()->id) }}" class="fw-bold text-dark text-decoration-none">全て見る</a>
+            {{-- <a href="{{ route('suggestion.show', Auth::user()->id) }}" class="fw-bold text-dark text-decoration-none">See All</a> --}}
         </div>
     </div>
 
@@ -25,11 +27,12 @@
             <div class="col ps-0 text-truncate">
                 <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $user->name}}</a>
             </div>
-            
+
             <div class="col-auto">
                 <form action="{{ route('follow.store', $user->id) }}" method="post">
                     @csrf
-                    <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
+                    <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">フォロー</button>
+                    {{-- <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button> --}}
                 </form>
             </div>
         </div>

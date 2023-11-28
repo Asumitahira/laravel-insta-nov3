@@ -36,7 +36,7 @@
                 <div class="card-header bg-white py-3">
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <a href="#">
+                            <a href="{{ route('profile.show', $post->user->id) }}">
                                 @if ($post->user->avatar)
                                     <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}" class="rounded-circle avatar-sm">
                                 @else
@@ -57,10 +57,12 @@
 
                                     <div class="dropdown-menu">
                                         <a href="{{ route('post.edit', $post->id) }}" class="dropdown-item">
-                                            <i class="fa-regular fa-pen-to-square"></i> Edit
+                                            <i class="fa-regular fa-pen-to-square"></i> 編集
+                                            {{-- <i class="fa-regular fa-pen-to-square"></i> Edit --}}
                                         </a>
                                         <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-post-{{ $post->id }}">
-                                            <i class="fa-regular fa-trash-can"></i> Delete
+                                            <i class="fa-regular fa-trash-can"></i> 削除
+                                            {{-- <i class="fa-regular fa-trash-can"></i> Delete --}}
                                         </button>
                                     </div>
                                     @include('users.posts.contents.modals.delete')
@@ -71,12 +73,14 @@
                                     <form action="{{ route('follow.destroy', $post->user->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="border-0 bg-transparent p-0 text-secondary">Following</button>
+                                        <button type="submit" class="border-0 bg-transparent p-0 text-secondary">フォロー中</button>
+                                        {{-- <button type="submit" class="border-0 bg-transparent p-0 text-secondary">Following</button> --}}
                                     </form>
                                 @else
                                     <form action="{{ route('follow.store', $post->user->id) }}" method="post">
                                         @csrf
-                                        <button type="submit" class="border-0 bg-transparent p-0 text-primary">Follow</button>
+                                        <button type="submit" class="border-0 bg-transparent p-0 text-primary">フォロー</button>
+                                        {{-- <button type="submit" class="border-0 bg-transparent p-0 text-primary">Follow</button> --}}
                                     </form>
                                 @endif
                             @endif
@@ -107,12 +111,13 @@
                             @forelse ($post->categoryPost as $category_post)
                                 <a href="{{ route('category.index', $category_post->category_id) }}"><span class="badge bg-secondary bg-opacity-50">{{ $category_post->category->name }}</span></a>
                             @empty
-                                <a href="#"><div class="badge bg-dark text-wrap">Uncategorized</div></a>
+                                <div class="badge bg-dark text-wrap">未カテゴリー</div>
+                                {{-- <div class="badge bg-dark text-wrap">Uncategorized</div> --}}
                             @endforelse
                         </div>
                     </div>
                     {{-- Owner + description --}}
-                    <a href="#" class="text-decoration-none text-dark fw-bold">{{ $post->user->name }}</a>
+                    <a href="{{ route('profile.show', $post->user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $post->user->name }}</a>
                     &nbsp;
                     <p class="d-inline fw-light">{{ $post->description }}</p>
                     <p class="text-uppercase text-muted small">{{ date('M d, Y', strtotime($post->created_at)) }}</p>
@@ -125,7 +130,7 @@
                             <ul class="list-group mt-2">
                                 @foreach ($post->comments as $comment)
                                     <li class="list-group-item border-0 p-0 mb-2 bg-white">
-                                        <a href="{{ route('profile.show',$post->user->id ) }}" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
+                                        <a href="{{ route('profile.show', $post->user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                         &nbsp;
                                         <p class="d-inline fw-light">{{ $comment->body }}</p>
                                         <form action="{{ route('comment.destroy', $comment->id) }}" method="post">
@@ -137,7 +142,8 @@
                                             {{-- If the AUTH user is the owner of the comment, then display the delete button --}}
                                             @if (Auth::user()->id === $comment->user->id)
                                                 &middot;
-                                                <button type="submit" class="border bg-transparent text-danger p-0 small">Delete</button>
+                                                <button type="submit" class="border bg-transparent text-danger p-0 small">削除</button>
+                                                {{-- <button type="submit" class="border bg-transparent text-danger p-0 small">Delete</button> --}}
                                             @endif
                                         </form>
                                     </li>
@@ -150,8 +156,10 @@
                         <form action="{{ route('comment.store', $post->id) }}" method="post">
                             @csrf
                             <div class="input-group">
-                                <textarea name="comment_body{{$post->id}}" rows="1" class="form-control form-control-sm" placeholder="Add a comment here....">{{ old('comment_body' . $post->id) }}</textarea>
-                                <button type="submit" class="btn btn-secondary btn-sm">Post</button>
+                                <textarea name="comment_body{{$post->id}}" rows="1" class="form-control form-control-sm" placeholder="コメントを追加">{{ old('comment_body' . $post->id) }}</textarea>
+                                {{-- <textarea name="comment_body{{$post->id}}" rows="1" class="form-control form-control-sm" placeholder="Add a comment here....">{{ old('comment_body' . $post->id) }}</textarea> --}}
+                                <button type="submit" class="btn btn-secondary btn-sm">投稿</button>
+                                {{-- <button type="submit" class="btn btn-secondary btn-sm">Post</button> --}}
                             </div>
                             @error('comment_body' . $post->id)
                                 <p class="text-danger small">{{ $message }}</p>

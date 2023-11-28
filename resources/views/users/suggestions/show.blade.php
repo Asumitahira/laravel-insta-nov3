@@ -5,7 +5,8 @@
 @section('content')
 
 <div class="mx-auto w-50">
-    <p class="fw-bold text-secondary h4 text-center">Suggestions For You</p>
+    <p class="fw-bold text-secondary h4 text-center">おすすめ</p>
+    {{-- <p class="fw-bold text-secondary h4 text-center">Suggestions For You</p> --}}
 
     <div class="w-75 mx-auto mt-4 suggest-user-scroll">
         @forelse ($suggested_users as $user)
@@ -28,12 +29,14 @@
                 <div class="col-auto">
                     <form action="{{ route('follow.store', $user->id) }}" method="post">
                         @csrf
-                        <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
+                        <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">フォロー</button>
+                        {{-- <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button> --}}
                     </form>
                 </div>
             </div>
         @empty
-            <p class="text-dark alert alert-dark h5 text-center">There are no user yet...</p>
+            <p class="text-dark alert alert-dark h5 text-center">ユーザーが見つかりません。</p>
+            {{-- <p class="text-dark alert alert-dark h5 text-center">There are no user yet...</p> --}}
         @endforelse
     </div>
 </div>

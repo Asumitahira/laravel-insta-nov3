@@ -29,11 +29,12 @@
             @forelse ($post->categoryPost as $category_post)
                 <a href="{{ route('category.index', $category_post->category_id) }}"><span class="badge bg-secondary bg-opacity-50">{{ $category_post->category->name }}</span></a>
             @empty
-                <a href="#"><div class="badge bg-dark text-wrap">Uncategorized</div></a>
+                <div class="badge bg-dark text-wrap">未カテゴリー</div>
+                {{-- <div class="badge bg-dark text-wrap">Uncategorized</div> --}}
             @endforelse
         </div>
     </div>
-    
+
     {{-- Owner + description --}}
     <a href="{{ route('profile.show', $post->user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $post->user->name }}</a>
     &nbsp;

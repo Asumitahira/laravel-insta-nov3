@@ -115,7 +115,8 @@ class ProfileController extends Controller
                 'password' => bcrypt($request->new_password),
             ]);
 
-            return redirect()->route('profile.editPassword')->with('success', 'Password changed successfully.');
+            return redirect()->route('profile.editPassword')->with('success', 'パスワードの変更に成功しました。');
+            // return redirect()->route('profile.editPassword')->with('success', 'Password changed successfully.');
         }
 
         return back()->withErrors(['current_password' => 'The current password is incorrect.']);

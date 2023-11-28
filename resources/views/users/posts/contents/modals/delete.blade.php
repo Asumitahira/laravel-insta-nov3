@@ -3,24 +3,28 @@
         <div class="modal-content border-danger">
             <div class="modal-header border-danger">
                 <h3 class="h5 modal-title title-danger">
-                    <i class="fa-solid fa-circle-exclamation"></i> Delete Post
+                    <i class="fa-solid fa-circle-exclamation"></i> ポストの削除
+                    {{-- <i class="fa-solid fa-circle-exclamation"></i> Delete Post --}}
                 </h3>
             </div>
 
             <div class="modal-body">
-                <p>Are you sure you want to delete this post?</p>
+                <p>本当にこのポストを削除してもいいですか?</p>
+                {{-- <p>Are you sure you want to delete this post?</p> --}}
                 <div class="mt-3">
                     <img src="{{ $post->image }}" alt=" post id {{ $post->id }}" class="w-100">
                     <p class="mt-1 text-muted">{{ $post->description }}</p>
                 </div>
             </div>
-            
+
             <div class="modal-footer border-0">
                 <form action="{{ route('post.destroy', $post->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">キャンセル</button>
+                    {{-- <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">Cancel</button> --}}
+                    <button type="submit" class="btn btn-sm btn-danger">削除</button>
+                    {{-- <button type="submit" class="btn btn-sm btn-danger">Delete</button> --}}
                 </form>
             </div>
         </div>

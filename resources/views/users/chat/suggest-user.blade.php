@@ -13,7 +13,8 @@
                 <a href="{{ route('chat.index', Auth::user()->id) }}" class="text-decoration-none text-secondary p-0 ms-2 btn"><i class="fa-solid fa-chevron-left"></i></a>
             </div>
             <div class="col">
-                <p class="h5 mb-3 fw-bold text-secondary text-center">Suggestions For You</p>
+                <p class="h5 mb-3 fw-bold text-secondary text-center">おすすめ</p>
+                {{-- <p class="h5 mb-3 fw-bold text-secondary text-center">Suggestions For You</p> --}}
             </div>
         </div>
 
@@ -34,9 +35,10 @@
             </div>
         @endforeach
     </div>
-    
+
     @else
-    <p class="alert alert-dark">There are no user.</p>
+    <p class="alert alert-dark">おすすめのユーザーが表示されます。</p>
+    {{-- <p class="alert alert-dark">There are no user.</p> --}}
     @endif
 </div>
 @endsection

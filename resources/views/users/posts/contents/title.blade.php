@@ -25,11 +25,13 @@
                 @if (Auth::user()->id === $post->user->id)
                     <div class="dropdown-menu">
                         <a href="{{ route('post.edit', $post->id) }}" class="dropdown-item">
-                            <i class="fa-regular fa-pen-to-square"></i> Edit
+                            <i class="fa-regular fa-pen-to-square"></i> 編集
+                            {{-- <i class="fa-regular fa-pen-to-square"></i> Edit --}}
                         </a>
                         <button class="dropdown-item text-danger" data-bs-toggle="modal"
                             data-bs-target="#delete-post-{{ $post->id }}">
-                            <i class="fa-regular fa-trash-can"></i> Delete
+                            <i class="fa-regular fa-trash-can"></i> 削除
+                            {{-- <i class="fa-regular fa-trash-can"></i> Delete --}}
                         </button>
                     </div>
                     {{-- Include the modal here --}}
@@ -42,12 +44,14 @@
                             <form action="{{route('follow.destroy',$post->user->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="dropdown-item text-danger">UnFollow</button>
+                                <button type="submit" class="dropdown-item text-danger">フォロー中</button>
+                                {{-- <button type="submit" class="dropdown-item text-danger">UnFollow</button> --}}
                             </form>
                         @else
                             <form action="{{ route('follow.store', $post->user->id) }}" method="post">
                                 @csrf
-                                <button type="submit" class="dropdown-item text-primary">Follow</button>
+                                <button type="submit" class="dropdown-item text-primary">フォロー</button>
+                                {{-- <button type="submit" class="dropdown-item text-primary">Follow</button> --}}
                             </form>
                         @endif
                     </div>

@@ -13,9 +13,12 @@
             @empty
                 {{-- If the site does not have any post yet, then display this...  --}}
                 <div class="text-center">
-                    <h2>Share Photos</h2>
-                    <p class="text-muted">When you share photos, they'll appear on your profile</p>
-                    <a href="{{ route('post.create') }}" class="text-decoration-none">Share your first photo</a>
+                    <h2>投稿をシェアしてみましょう！</h2>
+                    {{-- <h2>Share Photos</h2> --}}
+                    <p class="text-muted">投稿が完了すると、あなたのプロフィールページに追加されます。</p>
+                    {{-- <p class="text-muted">When you share photos, they'll appear on your profile</p> --}}
+                    <a href="{{ route('post.create') }}" class="text-decoration-none">新規投稿</a>
+                    {{-- <a href="{{ route('post.create') }}" class="text-decoration-none">Share your first photo</a> --}}
                 </div>
             @endforelse
         </div>
@@ -32,7 +35,7 @@
                         @endif
                     </a>
                 </div>
-                
+
                 <div class="col ps-0">
                     <a href="{{ route('profile.show', Auth::user()->id) }}" class="text-decoration-none text-dark fw-bold">{{ Auth::user()->name }}</a>
                     <p class="text-muted mb-0">{{ Auth::user()->email }}</p>

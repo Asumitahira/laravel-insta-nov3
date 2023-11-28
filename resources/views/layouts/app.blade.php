@@ -44,7 +44,8 @@
                         @if (request()->is('admin/*'))
                             <ul class="navbar-nav ms-auto">
                                 <form action="{{ route('search') }}" style="width: 300px">
-                                    <input type="search" name="search" id="" class="form-control form-control-sm" placeholder="Search...">
+                                    <input type="search" name="search" id="" class="form-control form-control-sm" placeholder=" 検索">
+                                    {{-- <input type="search" name="search" id="" class="form-control form-control-sm" placeholder="Search..."> --}}
                                 </form>
                             </ul>
                         @endif
@@ -67,17 +68,20 @@
                             @endif
                         @else
                             {{-- Home --}}
-                            <li class="nav-item" title="Home">
+                            <li class="nav-item" title="ホーム">
+                            {{-- <li class="nav-item" title="Home"> --}}
                                 <a href="{{ route('index') }}" class="nav-link"><i class="fa-solid fa-house text-dark icon-sm"></i></a>
                             </li>
 
                             {{--  Create Post --}}
-                            <li class="nav-item" title="Create Post">
+                            <li class="nav-item" title="新規投稿">
+                            {{-- <li class="nav-item" title="Create Post"> --}}
                                 <a href="{{ route('post.create') }}" class="nav-link"><i class="fa-solid fa-circle-plus text-dark icon-sm"></i></a>
                             </li>
 
                             {{-- Chat --}}
-                            <li class="nav-item" title="Chat Box">
+                            <li class="nav-item" title="チャット">
+                            {{-- <li class="nav-item" title="Chat Box"> --}}
                                 <a href="{{ route('chat.index', Auth::user()->id) }}" class="nav-link">
                                     <i class="fa-regular fa-paper-plane text-dark icon-sm"></i>
                                 </a>
@@ -104,7 +108,8 @@
                                     @can('admin')
                                     {{-- Admin Controls --}}
                                     <a href="{{ route('admin.users') }}" class="dropdown-item">
-                                        <i class="fa-solid fa-user-gear"></i> Admin
+                                        <i class="fa-solid fa-user-gear"></i> 管理者ページ
+                                        {{-- <i class="fa-solid fa-user-gear"></i> Admin --}}
                                     </a>
 
                                     <hr>
@@ -113,17 +118,20 @@
                                     {{-- Profile --}}
                                     <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
                                         @if (Auth::user()->avatar)
-                                            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="rounded-circle avatar-sm">
+                                            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="rounded-circle avatar-sm"> プロフィール
                                         @else
-                                            <i class="fa-solid fa-circle-user"></i> Profile
-                                        @endif
-                                    </a>
+                                            <i class="fa-solid fa-circle-user"></i> プロフィール
+                                            {{-- <i class="fa-solid fa-circle-user"></i> Profile --}}
+                                            @endif
+                                        </a>
+                                    <hr>
 
                                     {{-- Logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
+                                        <i class="fa-solid fa-right-from-bracket"></i> {{ __('ログアウト') }}
+                                        {{-- <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }} --}}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -151,13 +159,16 @@
                         <div class="col-3">
                             <div class="list-group">
                                 <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users') ? 'active':'' }}">
-                                    <i class="fa-solid fa-users"></i> Users
+                                    <i class="fa-solid fa-users"></i> ユーザー
+                                    {{-- <i class="fa-solid fa-users"></i> Users --}}
                                 </a>
                                 <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts') ? 'active':'' }}">
-                                    <i class="fa-solid fa-newspaper"></i> Posts
+                                    <i class="fa-solid fa-newspaper"></i> 投稿
+                                    {{-- <i class="fa-solid fa-newspaper"></i> Posts --}}
                                 </a>
                                 <a href="{{ route('admin.categories') }}" class="list-group-item {{ request()->is('admin/categories') ? 'active':'' }}">
-                                    <i class="fa-solid fa-tags"></i> Categories
+                                    <i class="fa-solid fa-tags"></i> カテゴリー
+                                    {{-- <i class="fa-solid fa-tags"></i> Categories --}}
                                 </a>
                             </div>
                         </div>

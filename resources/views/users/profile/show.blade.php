@@ -17,7 +17,8 @@
                 @endforeach
             </div>
         @else
-            <h3 class="text-muted text-center">No Post Yet</h3>
+            <h3 class="text-muted text-center">まだ投稿がありません。</h3>
+            {{-- <h3 class="text-muted text-center">No Post Yet</h3> --}}
         @endif
     </div>
 @endsection

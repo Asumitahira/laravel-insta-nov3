@@ -6,10 +6,12 @@
 <div class="w-50 mx-auto">
     <div class="row">
         <div class="col-8">
-            <p class="h2 text-end">Messages</p>
+            <p class="h2 text-end">メッセージ</p>
+            {{-- <p class="h2 text-end">Messages</p> --}}
         </div>
         <div class="col text-end">
-            <a href="{{ route('chat.suggestUser', Auth::user()->id) }}" class="text-decoration-none text-dark btn text-end" title="Add message"><i class="fa-solid fa-plus fa-2x"></i></a>
+            <a href="{{ route('chat.suggestUser', Auth::user()->id) }}" class="text-decoration-none text-dark btn text-end" title="新規メッセージ"><i class="fa-solid fa-plus fa-2x"></i></a>
+            {{-- <a href="{{ route('chat.suggestUser', Auth::user()->id) }}" class="text-decoration-none text-dark btn text-end" title="Add message"><i class="fa-solid fa-plus fa-2x"></i></a> --}}
         </div>
     </div>
 
@@ -67,7 +69,8 @@
             </div>
         @endforeach
     @empty
-        <p class="h4 text-center text-secondary mt-5">No message yet.</p>
+        <p class="h4 text-center text-secondary mt-5">メッセージがありません。</p>
+        {{-- <p class="h4 text-center text-secondary mt-5">No message yet.</p> --}}
     @endforelse
 </div>
 @endsection

@@ -7,15 +7,18 @@
             <div class="modal-content border-warning">
                 <div class="modal-header border-warning">
                     <h3 class="h5 modal-title">
-                        <i class="fa-regular fa-pen-to-square"></i> Edit Category
+                        <i class="fa-regular fa-pen-to-square"></i> カテゴリーの編集
+                        {{-- <i class="fa-regular fa-pen-to-square"></i> Edit Category --}}
                     </h3>
                 </div>
                 <div class="modal-body">
                     <input type="text" name="new_name" class="form-control" placeholder="category name" value="{{ $category->name }}">
                 </div>
                 <div class="modal-footer barder-0">
-                    <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-warning btn-sm">Update</button>
+                    <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">キャンセル</button>
+                    {{-- <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">Cancel</button> --}}
+                    <button type="submit" class="btn btn-warning btn-sm">保存</button>
+                    {{-- <button type="submit" class="btn btn-warning btn-sm">Update</button> --}}
                 </div>
             </div>
         </form>
@@ -31,16 +34,21 @@
             <div class="modal-content border-danger">
                 <div class="modal-header border-danger">
                     <h3 class="h5 modal-title">
-                        <i class="fa-regular fa-trash-can"></i> Delete Category
+                        <i class="fa-regular fa-trash-can"></i> カテゴリーの削除
+                        {{-- <i class="fa-regular fa-trash-can"></i> Delete Category --}}
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete <span class="fw-bold">{{ $category->name }}</span> category?</p>
-                    <p class="fw-light">This action will affect all the posts under this category. <br> Post without category will fall under Uncategorized.</p>
+                    <p> <span class="fw-bold text-danger">{{ $category->name }}</span> を本当に削除しますか？？</p>
+                    <p class="fw-light">削除すると、このカテゴリに関連する全ての投稿に影響します。 <br> カテゴリのない投稿は <span class="fw-bold">「未分類」</span> に分類されます。</p>
+                    {{-- <p>Are you sure you want to delete <span class="fw-bold">{{ $category->name }}</span> category?</p>
+                    <p class="fw-light">This action will affect all the posts under this category. <br> Post without category will fall under Uncategorized.</p> --}}
                 </div>
                 <div class="modal-footer barder-0">
-                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal">キャンセル</button>
+                    {{-- <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal">Cancel</button> --}}
+                    <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                    {{-- <button type="submit" class="btn btn-danger btn-sm">Delete</button> --}}
                 </div>
             </div>
         </form>
